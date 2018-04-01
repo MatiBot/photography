@@ -843,7 +843,7 @@
                     break;
 
                 case 'video':
-                    x.object = $('<video loop autoplay muted width="100%"><source src="" type="video/mp4">Your browser does not support HTML5 video.</video>');
+                    x.object = $('<video loop autoplay muted playsinline width="100%"><source src="" type="video/mp4">Your browser does not support HTML5 video.</video>');
                     if (!x.width || !x.height) {
                         x.width = "800";
                         x.height = "480";
