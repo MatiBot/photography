@@ -438,7 +438,7 @@
                 else
                     $x.attr('src', x.src);
 
-                if (x.type != 'image') {
+                if (x.type != 'image' && x.type != 'video') {
 
                     var xwidth, xheight;
 
@@ -474,14 +474,14 @@
 
                         $x.off('load');
                         $loader.hide().trigger('stopSpinning');
-                        
+
                         // lazy load captions
                         if (typeof(settings.caption) == 'function') {
                             c = (settings.caption)(x.a);
                         } else {
                             c = x.captionText;
                         }
-                        
+
                         $caption.trigger('update', [c]).fadeIn(settings.fadeSpeed);
                         $closer.fadeIn(settings.fadeSpeed);
                         $pic.css('text-indent', 0).hide().fadeIn(settings.fadeSpeed, function() { isLocked = false; });
@@ -842,6 +842,15 @@
 
                     break;
 
+                case 'video':
+                    x.object = $('<video loop autoplay muted width="100%"><source src="" type="video/mp4">Your browser does not support HTML5 video.</video>');
+                    if (!x.width || !x.height) {
+                        x.width = "800";
+                        x.height = "480";
+                    }
+
+                    break;
+
                 default:
                     x.object = $('<img src="" alt="" style="vertical-align:bottom" />');
 
@@ -883,7 +892,7 @@
         });
 
         $this.prop("_poptrox", settings);
-        
+
         return $(this);
 
     };
